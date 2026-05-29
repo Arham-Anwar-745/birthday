@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Birthday Ahsan Saith</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      overflow:hidden;
+      background:#0f172a;
+      color:white;
+    }
+
+    .page{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      opacity:0;
+      transform:scale(1.1);
+      transition:1s ease;
+    }
+
+    .page.active{
+      opacity:1;
+      transform:scale(1);
+      z-index:10;
+    }
+
+    .glass{
+      width:100%;
+      max-width:900px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:40px;
+      padding:50px;
+      text-align:center;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .bg1{
+      background:
+      radial-gradient(circle at top left,#00c6ff55,transparent 30%),
+      radial-gradient(circle at bottom right,#ff00ff44,transparent 30%),
+      linear-gradient(135deg,#020617,#111827,#1e293b);
+    }
+
+    .bg2{
+      background:
+      linear-gradient(135deg,#ff512f,#dd2476);
+    }
+
+    .bg3{
+      background:
+      linear-gradient(135deg,#00b09b,#96c93d);
+    }
+
+    .title{
+      font-size:70px;
+      font-weight:900;
+      line-height:1;
+      margin-bottom:25px;
+    }
+
+    .funny{
+      color:#ffd60a;
+      text-shadow:0 0 20px rgba(255,214,10,0.6);
+    }
+
+    .message{
+      font-size:24px;
+      line-height:1.8;
+      opacity:0.95;
+    }
+
+    .btn{
+      margin-top:40px;
+      padding:16px 40px;
+      border:none;
+      border-radius:50px;
+      background:white;
+      color:#111827;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(255,255,255,0.2);
+    }
+
+    .btn:hover{
+      transform:scale(1.07);
+    }
+
+    .emoji{
+      position:absolute;
+      font-size:40px;
+      animation:float 6s ease-in-out infinite;
+      opacity:0.8;
+    }
+
+    .e1{top:10%;left:10%;}
+    .e2{top:20%;right:15%;}
+    .e3{bottom:15%;left:20%;}
+    .e4{bottom:10%;right:10%;}
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    .cake{
+      margin:auto;
+      margin-top:40px;
+      width:300px;
+      position:relative;
+    }
+
+    .cake-top{
+      width:220px;
+      height:70px;
+      background:#ffb703;
+      margin:auto;
+      border-radius:30px 30px 15px 15px;
+    }
+
+    .cake-body{
+      width:300px;
+      height:140px;
+      background:#fb8500;
+      border-radius:30px;
+      margin-top:-10px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .drip{
+      position:absolute;
+      width:25px;
+      background:#ffd166;
+      border-radius:0 0 15px 15px;
+      top:0;
+    }
+
+    .d1{left:40px;height:50px;}
+    .d2{left:100px;height:70px;}
+    .d3{left:170px;height:45px;}
+    .d4{left:240px;height:65px;}
+
+    .candle{
+      width:14px;
+      height:70px;
+      background:white;
+      position:absolute;
+      top:-60px;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:10px;
+    }
+
+    .flame{
+      width:20px;
+      height:35px;
+      background:radial-gradient(circle,#fff,#ffd60a,#ff6b00);
+      border-radius:50%;
+      position:absolute;
+      top:-30px;
+      left:50%;
+      transform:translateX(-50%);
+      animation:flicker 0.15s infinite alternate;
+      box-shadow:0 0 25px orange;
+    }
+
+    @keyframes flicker{
+      from{
+        transform:translateX(-50%) scale(1);
+      }
+      to{
+        transform:translateX(-50%) scale(1.1);
+      }
+    }
+
+    .balloon{
+      position:absolute;
+      width:80px;
+      height:100px;
+      border-radius:50%;
+      opacity:0;
+      transition:3s ease;
+    }
+
+    .balloon::after{
+      content:'';
+      position:absolute;
+      width:2px;
+      height:70px;
+      background:white;
+      left:50%;
+      bottom:-70px;
+    }
+
+    .b1{
+      background:#ff006e;
+      left:10%;
+      bottom:20px;
+    }
+
+    .b2{
+      background:#8338ec;
+      right:10%;
+      bottom:40px;
+    }
+
+    .b3{
+      background:#3a86ff;
+      left:45%;
+      bottom:0;
+    }
+
+    @media(max-width:768px){
+
+      .glass{
+        padding:30px 20px;
+      }
+
+      .title{
+        font-size:46px;
+      }
+
+      .message{
+        font-size:18px;
+      }
+
+      .cake{
+        transform:scale(0.8);
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Floating Emojis -->
+  <div class="emoji e1">😂</div>
+  <div class="emoji e2">🎉</div>
+  <div class="emoji e3">🔥</div>
+  <div class="emoji e4">😎</div>
+
+  <!-- PAGE 1 -->
+  <section class="page bg1 active">
+
+    <div class="glass">
+
+      <h1 class="title">
+        Happy Birthday
+        <span class="funny block">
+          Ahsan Saith 😎
+        </span>
+      </h1>
+
+      <div class="message">
+        Another year older...
+        <br>
+        still no improvement 🤡
+        <br><br>
+        But honestly...
+        life would be boring without you 😂
+      </div>
+
+      <button class="btn" onclick="nextPage()">
+        Continue Chaos 🎉
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page bg2">
+
+    <div class="glass">
+
+      <h1 class="title">
+        Certified
+        <span class="funny block">
+          Trouble Maker 😂
+        </span>
+      </h1>
+
+      <div class="message">
+        Thank you for all the stupid memories,
+        random jokes,
+        and crazy moments 😂
+        <br><br>
+        You are not just my best friend...
+        you are my unpaid comedian 😭
+      </div>
+
+      <button class="btn" onclick="nextPage()">
+        One More 😂
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page bg3">
+
+    <div class="glass">
+
+      <h1 class="title">
+        Party Time 🎂
+      </h1>
+
+      <div class="message">
+        Wishing Ahsan Saith unlimited happiness,
+        success,
+        money,
+        and fewer embarrassing moments this year 😂
+      </div>
+
+      <!-- Cake -->
+      <div class="cake">
+
+        <div class="candle">
+          <div id="flame" class="flame hidden"></div>
+        </div>
+
+        <div class="cake-top"></div>
+
+        <div class="cake-body">
+          <div class="drip d1"></div>
+          <div class="drip d2"></div>
+          <div class="drip d3"></div>
+          <div class="drip d4"></div>
+        </div>
+
+      </div>
+
+      <!-- Balloons -->
+      <div id="b1" class="balloon b1"></div>
+      <div id="b2" class="balloon b2"></div>
+      <div id="b3" class="balloon b3"></div>
+
+      <button class="btn" onclick="celebrate()">
+        Celebrate 🎉
+      </button>
+
+    </div>
+
+  </section>
+
+  <script>
+
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+
+    function nextPage(){
+
+      pages[currentPage].classList.remove('active');
+
+      currentPage++;
+
+      pages[currentPage].classList.add('active');
+
+    }
+
+    function celebrate(){
+
+      document.getElementById('flame').classList.remove('hidden');
+
+      const balloons = ['b1','b2','b3'];
+
+      balloons.forEach((id,index)=>{
+
+        const balloon = document.getElementById(id);
+
+        balloon.style.opacity = '1';
+
+        setTimeout(()=>{
+
+          balloon.style.transform =
+          `translateY(-350px) rotate(${index*10}deg)`;
+
+        },index * 300);
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
